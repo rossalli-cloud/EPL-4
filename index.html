@@ -1,4 +1,3 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +9,15 @@
 <body>
   <main class="container">
     <h1>UTC Synced Audio Player</h1>
-
     <label for="startTime">Start Time (UTC)</label>
     <input id="startTime" type="datetime-local" step="1" />
-
     <button id="playButton">Play</button>
-
     <div id="status" class="status">Waiting to start.</div>
-
     <audio id="audio" preload="auto" playsinline>
       <source src="audio/track.m4a" type="audio/mp4" />
       Your browser does not support HTML5 audio.
     </audio>
   </main>
-
   <script src="player.js"></script>
 </body>
 </html>
