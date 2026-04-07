@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alli Test - UTC Synced Audio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPL Audio Player</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container">
-    <h1>UTC Synced Audio Player</h1>
-    <label for="startTime">Start Time (UTC) — Entrance 1</label>
-    <input id="startTime" type="datetime-local" step="1" />
-    <button id="playButton1">Play — Entrance 1</button>
-    <button id="playButton2">Play — Entrance 2</button>
-    <div id="status" class="status">Waiting to start.</div>
-    <audio id="audio" preload="auto" playsinline>
-      <source src= AUDIO-2026-04-03-00-29-15.mp3 type="audio/mp3" />
-      Your browser does not support HTML5 audio.
+  <div class="player">
+    <h1>EPL Audio Player</h1>
+    <div class="track-info">
+      <p id="track-title">Track One</p>
+    </div>
+    <audio id="audio" preload="metadata">
+      <source src="https://audio.eplaudioplayer.org/your-track-1.mp3" type="audio/mpeg">
     </audio>
-  </main>
+    <div class="controls">
+      <button id="play-btn">▶ Play</button>
+      <input type="range" id="progress" value="0" min="0" step="0.1">
+      <div class="volume">
+        <label>Vol</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+      </div>
+    </div>
+  </div>
   <script src="player.js"></script>
 </body>
 </html>
