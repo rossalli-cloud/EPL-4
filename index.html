@@ -4,26 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EPL Audio Player</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="player">
-    <h1>EPL Audio Player</h1>
-    <div class="track-info">
-      <p id="track-title">Track One</p>
-    </div>
-    <audio id="audio" preload="metadata">
-      <source src="https://audio.eplaudioplayer.org/AUDIO-2026-04-03-00-29-15.mp3" type="audio/mpeg">
-    </audio>
-    <div class="controls">
-      <button id="play-btn">▶ Play</button>
-      <input type="range" id="progress" value="0" min="0" step="0.1">
-      <div class="volume">
-        <label>Vol</label>
-        <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
-      </div>
-    </div>
-  </div>
-  <script src="player.js"></script>
-</body>
-</html>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .player {
+      background: #16213e;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+    #track-title { color: #a0aec0; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    #play-btn {
+      background: #e94560;
+      color: white;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      width: 140px;
