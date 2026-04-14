@@ -1,154 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EPL Audio Player</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Player</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial, sans-serif;
-      background: #1a1a2e;
-      color: #fff;
+      font-family: sans-serif;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      background: #111;
+      color: #fff;
+      gap: 1rem;
     }
-    .player {
-      background: #16213e;
-      padding: 2rem;
-      border-radius: 16px;
-      width: 360px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    #track-title {
+      font-size: 1.4rem;
+      color: #ccc;
     }
-    h1 { font-size: 1.4rem; margin-bottom: 1.5rem; }
-    #track-title { color: #a0aec0; margin-bottom: 1.5rem; font-size: 0.95rem; }
-    #play-btn {
-      background: #e94560;
-      color: white;
-      border: none;
-      padding: 0.6rem 2rem;
-      border-radius: 24px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-bottom: 1.5rem;
-      width: 140px;
+    #countdown-display {
+      font-size: 7rem;
+      font-weight: bold;
+      color: #1db954;
+      line-height: 1;
     }
-    #play-btn:hover { background: #c73652; }
-    #progress {
-      width: 100%;
-      margin: 0.5rem 0 1rem;
-      accent-color: #e94560;
-      cursor: pointer;
-    }
-    .time-display {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: #a0aec0;
-      margin-bottom: 1rem;
-    }
-    .volume-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .volume-row label { font-size: 0.85rem; color: #a0aec0; }
-    #volume { flex: 1; accent-color: #e94560; }
-    #status {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: #a0aec0;
-      min-height: 1.2rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="player">
-    <h1>EPL Audio Player</h1>
-    <p id="track-title">AUDIO-2026-04-03-00-29-15</p>
-
-    <button id="play-btn">▶ Play</button>
-
-    <input type="range" id="progress" value="0" min="0" step="1">
-
-    <div class="time-display">
-      <span id="current-time">0:00</span>
-      <span id="duration">0:00</span>
-    </div>
-
-    <div class="volume-row">
-      <label>Vol</label>
-      <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
-    </div>
-
-    <div id="status">Loading...</div>
-  </div>
-
-  <script>
-    const audio = new Audio();
-    audio.src = "https://audio.eplaudioplayer.org/AUDIO-2026-04-03-00-29-15.mp3";
-    audio.preload = "metadata";
-
-    const playBtn = document.getElementById('play-btn');
-    const progress = document.getElementById('progress');
-    const volume = document.getElementById('volume');
-    const currentTimeEl = document.getElementById('current-time');
-    const durationEl = document.getElementById('duration');
-    const statusEl = document.getElementById('status');
-
-    function formatTime(s) {
-      if (isNaN(s)) return '0:00';
-      const m = Math.floor(s / 60);
-      const sec = Math.floor(s % 60);
-      return m + ':' + (sec < 10 ? '0' : '') + sec;
-    }
-
-    audio.addEventListener('loadedmetadata', () => {
-      progress.max = Math.floor(audio.duration);
-      durationEl.textContent = formatTime(audio.duration);
-      statusEl.textContent = 'Ready';
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      progress.value = Math.floor(audio.currentTime);
-      currentTimeEl.textContent = formatTime(audio.currentTime);
-    });
-
-    audio.addEventListener('waiting', () => { statusEl.textContent = 'Buffering...'; });
-    audio.addEventListener('playing', () => { statusEl.textContent = 'Playing'; });
-    audio.addEventListener('pause',   () => { statusEl.textContent = 'Paused'; });
-    audio.addEventListener('ended',   () => {
-      playBtn.textContent = '▶ Play';
-      statusEl.textContent = 'Finished';
-      progress.value = 0;
-    });
-    audio.addEventListener('error', (e) => {
-      statusEl.textContent = 'Error loading audio — check URL';
-      console.error('Audio error:', e);
-    });
-
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().catch(err => {
-          statusEl.textContent = 'Playback error: ' + err.message;
-        });
-        playBtn.textContent = '⏸ Pause';
-      } else {
-        audio.pause();
-        playBtn.textContent = '▶ Play';
-      }
-    });
-
-    progress.addEventListener('input', () => {
-      audio.currentTime = progress.value;
-    });
-
-    volume.addEventListener('input', () => {
-      audio.volume = volume.value;
-    });
-  </script>
-</body>
-</html>
+    #countdown-status {
+      font-size:
