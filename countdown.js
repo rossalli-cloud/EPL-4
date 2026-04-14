@@ -1,9 +1,9 @@
 // ============================================================
 // Web Player — Pusher-triggered countdown
 // ============================================================
-const PUSHER_KEY     = "your-pusher-key";       // <-- replace this
-const PUSHER_CLUSTER = "us2";                   // <-- replace this e.g. "us2", "eu"
-const TRACK_JSON_URL = "https://your-r2-bucket.r2.dev/track.json"; // <-- replace this
+const PUSHER_KEY     = "c2715121f455b2cef3e1"    
+const PUSHER_CLUSTER = "us2"                
+const TRACK_JSON_URL = "https://audio.eplaudioplayer.org/track.json"
 
 // ============================================================
 
