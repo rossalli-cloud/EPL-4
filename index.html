@@ -69,7 +69,6 @@
       margin-bottom: 20px;
     }
 
-    /* URL Input */
     .url-row {
       display: flex;
       gap: 8px;
@@ -104,7 +103,6 @@
     }
     .load-btn:hover { background: var(--gold); }
 
-    /* Tape Window */
     .tape-window {
       background: var(--bg-deep);
       border-radius: 14px;
@@ -175,7 +173,6 @@
       margin-top: 3px;
     }
 
-    /* Tape path */
     .tape-path {
       height: 6px;
       background: var(--bg-mid);
@@ -188,11 +185,11 @@
       width: 30%;
       background: linear-gradient(90deg, transparent, rgba(200,168,75,0.15), transparent);
       animation: tapeMove 2s linear infinite;
+      animation-play-state: paused;
     }
-    .tape-sheen.paused { animation-play-state: paused; }
+    .tape-sheen.playing { animation-play-state: running; }
     @keyframes tapeMove { from { transform: translateX(-100%); } to { transform: translateX(400%); } }
 
-    /* VU meters */
     .vu-row {
       display: flex;
       gap: 3px;
@@ -204,11 +201,10 @@
       width: 5px;
       border-radius: 2px;
       background: var(--gold-dk);
-      opacity: 0.4;
-      transition: height 0.08s ease, opacity 0.08s ease;
+      opacity: 0.2;
+      height: 4px;
     }
 
-    /* Progress */
     .progress-area { margin-bottom: 16px; }
     .scrub-wrap {
       height: 5px;
@@ -216,14 +212,12 @@
       border-radius: 3px;
       cursor: pointer;
       margin-bottom: 6px;
-      position: relative;
     }
     .scrub-fill {
       height: 100%;
       background: var(--gold-dk);
       border-radius: 3px;
       width: 0%;
-      transition: width 0.3s linear;
     }
     .time-row {
       display: flex;
@@ -232,13 +226,12 @@
       color: var(--text-muted);
     }
 
-    /* Controls */
     .controls {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .ctrl-btn {
       background: var(--bg-mid);
@@ -254,7 +247,7 @@
     .ctrl-btn:hover { background: var(--border); color: var(--text); }
 
     .play-btn {
-      width: 56px; height: 56px;
+      width: 64px; height: 64px;
       border-radius: 50%;
       background: var(--gold-dk);
       border: none;
@@ -265,75 +258,8 @@
     }
     .play-btn:hover  { background: var(--gold); }
     .play-btn:active { transform: scale(0.95); }
+    .play-btn.ready  { background: var(--gold); box-shadow: 0 0 0 4px rgba(200,168,75,0.25); }
 
-    /* Arm section */
-    .arm-section {
-      border-top: 1px solid var(--border-dim);
-      padding-top: 14px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .arm-btn {
-      background: var(--bg-mid);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-dim);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: all 0.2s;
-      width: 100%;
-    }
-    .arm-btn:hover { border-color: var(--gold-dk); color: var(--text); }
-    .arm-btn.armed {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(200,168,75,0.08);
-      animation: armPulse 2s ease-in-out infinite;
-    }
-    .arm-btn.armed.urgent {
-      border-color: #e87040;
-      color: #e87040;
-      background: rgba(232,112,64,0.08);
-      animation: armPulse 0.6s ease-in-out infinite;
-    }
-    @keyframes armPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(200,168,75,0.0); }
-      50%       { box-shadow: 0 0 0 6px rgba(200,168,75,0.15); }
-    }
-
-    .arm-sub {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 6px;
-      min-height: 14px;
-    }
-    .countdown-num {
-      font-size: 11px;
-      color: var(--gold);
-      font-weight: 400;
-    }
-
-    /* Breath bars below arm */
-    .breath-row {
-      display: flex;
-      gap: 3px;
-      justify-content: center;
-      align-items: flex-end;
-      height: 20px;
-      margin-top: 10px;
-    }
-    .breath-bar {
-      width: 4px;
-      border-radius: 2px;
-      background: var(--gold-dk);
-      opacity: 0.2;
-      transition: height 0.15s ease, opacity 0.15s ease, background 0.3s;
-    }
-
-    /* Share box */
     .share-section {
       border-top: 1px solid var(--border-dim);
       padding-top: 14px;
@@ -345,10 +271,7 @@
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-    .share-row {
-      display: flex;
-      gap: 8px;
-    }
+    .share-row { display: flex; gap: 8px; }
     .share-input {
       flex: 1;
       background: var(--bg-deep);
@@ -375,17 +298,16 @@
     }
     .copy-btn:hover { background: var(--border); }
 
-    /* Status */
     .status-row {
       margin-top: 10px;
       font-size: 10px;
       color: var(--text-dark);
       min-height: 14px;
       letter-spacing: 0.04em;
+      text-align: center;
     }
     .status-row.ok { color: var(--green); }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 32px; left: 50%;
@@ -402,23 +324,18 @@
       z-index: 999;
       white-space: nowrap;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 <div class="shell">
   <div class="deck-title">Tape Deck &middot; UTC Sync</div>
 
-  <!-- URL input -->
   <div class="url-row">
     <input class="url-input" id="audioUrl" placeholder="paste audio url…" autocomplete="off" autocorrect="off" spellcheck="false">
     <button class="load-btn" onclick="loadTrack()">LOAD</button>
   </div>
 
-  <!-- Tape window -->
   <div class="tape-window">
     <div class="reels-row">
       <div class="reel-wrap">
@@ -450,11 +367,10 @@
         </div>
       </div>
     </div>
-    <div class="tape-path"><div class="tape-sheen paused" id="tapeSheen"></div></div>
+    <div class="tape-path"><div class="tape-sheen" id="tapeSheen"></div></div>
     <div class="vu-row" id="vuRow"></div>
   </div>
 
-  <!-- Progress -->
   <div class="progress-area">
     <div class="scrub-wrap" id="scrubWrap">
       <div class="scrub-fill" id="scrubFill"></div>
@@ -465,28 +381,19 @@
     </div>
   </div>
 
-  <!-- Controls -->
   <div class="controls">
     <button class="ctrl-btn" onclick="skip(-15)">&#9664;&#9664; 15s</button>
     <button class="play-btn" id="playBtn" onclick="togglePlay()">
-      <svg id="playIcon"  width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg id="pauseIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <svg id="playIcon"  width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+      <svg id="pauseIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
     </button>
     <button class="ctrl-btn" onclick="skip(15)">15s &#9654;&#9654;</button>
   </div>
 
-  <!-- Arm section -->
-  <div class="arm-section">
-    <button class="arm-btn" id="armBtn" onclick="toggleArm()">tap to arm</button>
-    <div class="arm-sub" id="armSub"></div>
-    <div class="breath-row" id="breathRow"></div>
-  </div>
-
-  <!-- Share -->
   <div class="share-section">
     <div class="share-label">share · sync link</div>
     <div class="share-row">
-      <input class="share-input" id="shareInput" readonly placeholder="arm the player to generate a link">
+      <input class="share-input" id="shareInput" readonly placeholder="play to generate sync link">
       <button class="copy-btn" onclick="copyLink()">COPY</button>
     </div>
     <div class="status-row" id="statusRow"></div>
@@ -496,27 +403,17 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── State ────────────────────────────────────────────────────────────────────
-let audio        = null;
-let isPlaying    = false;
-let syncEpoch    = null;   // UTC seconds when track position 0 corresponds to
-let countdownArmed = false;
-let fireEpoch    = null;   // UTC seconds of the next minute boundary to fire at
-let iosUnlocked  = false;  // has the iOS audio context been unlocked?
+let audio     = null;
+let isPlaying = false;
+let syncEpoch = null;
+let syncTimer = null;
+let vuTimer   = null;
 
-let syncTimer    = null;
-let vuTimer      = null;
-let breathTimer  = null;
-let breathPhase  = 0;
-const BREATH_BARS = 16;
-
-// ─── Utilities ────────────────────────────────────────────────────────────────
 function getUTC() { return Date.now() / 1000; }
 
 function fmt(s) {
   if (!isFinite(s) || s < 0) return '0:00';
-  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
-  return m + ':' + String(sec).padStart(2, '0');
+  return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
 }
 
 function showToast(msg, dur = 2200) {
@@ -532,144 +429,90 @@ function setStatus(msg, ok = false) {
   s.className = 'status-row' + (ok ? ' ok' : '');
 }
 
-// ─── Build VU bars & breath bars ─────────────────────────────────────────────
-(function buildBars() {
-  const vuRow = document.getElementById('vuRow');
+// Build VU bars
+(function() {
+  const row = document.getElementById('vuRow');
   for (let i = 0; i < 18; i++) {
     const b = document.createElement('div');
-    b.className = 'vu-bar';
-    b.id = 'vu' + i;
-    b.style.height = '4px';
-    vuRow.appendChild(b);
-  }
-  const bRow = document.getElementById('breathRow');
-  for (let i = 0; i < BREATH_BARS; i++) {
-    const b = document.createElement('div');
-    b.className = 'breath-bar';
-    b.id = 'bb' + i;
-    b.style.height = '4px';
-    bRow.appendChild(b);
+    b.className = 'vu-bar'; b.id = 'vu' + i;
+    row.appendChild(b);
   }
 })();
 
-// ─── VU animation ─────────────────────────────────────────────────────────────
 function animateVU() {
   for (let i = 0; i < 18; i++) {
     const b = document.getElementById('vu' + i);
     if (!b) continue;
-    const h = 4 + Math.random() * 26;
-    const op = 0.3 + Math.random() * 0.65;
-    b.style.height = h + 'px';
-    b.style.opacity = op;
+    b.style.height  = (4 + Math.random() * 26) + 'px';
+    b.style.opacity = 0.3 + Math.random() * 0.65;
   }
 }
 
 function stopVU() {
+  clearInterval(vuTimer);
   for (let i = 0; i < 18; i++) {
     const b = document.getElementById('vu' + i);
     if (b) { b.style.height = '4px'; b.style.opacity = '0.2'; }
   }
 }
 
-// ─── Breath animation ────────────────────────────────────────────────────────
-function startBreath(urgent = false) {
-  clearInterval(breathTimer);
-  const speed = urgent ? 80 : 300;
-  breathTimer = setInterval(() => {
-    breathPhase = (breathPhase + 1) % BREATH_BARS;
-    for (let i = 0; i < BREATH_BARS; i++) {
-      const b = document.getElementById('bb' + i);
-      if (!b) continue;
-      const dist = Math.min(Math.abs(i - breathPhase), BREATH_BARS - Math.abs(i - breathPhase));
-      const h  = Math.max(3, 18 - dist * 3);
-      const op = Math.max(0.08, 0.8 - dist * 0.15);
-      b.style.height = h + 'px';
-      b.style.opacity = op;
-      b.style.background = urgent ? '#e87040' : 'var(--gold)';
-    }
-  }, speed);
-}
-
-function stopBreath() {
-  clearInterval(breathTimer);
-  for (let i = 0; i < BREATH_BARS; i++) {
-    const b = document.getElementById('bb' + i);
-    if (b) { b.style.height = '4px'; b.style.opacity = '0.2'; b.style.background = 'var(--gold-dk)'; }
-  }
-}
-
-// ─── Reel helpers ─────────────────────────────────────────────────────────────
-function reelsPlay()  {
+function reelsPlay() {
   document.getElementById('reelL').className = 'reel spinning';
   document.getElementById('reelR').className = 'reel spinning-slow';
-  document.getElementById('tapeSheen').classList.remove('paused');
+  document.getElementById('tapeSheen').classList.add('playing');
 }
-function reelsStop()  {
+function reelsStop() {
   document.getElementById('reelL').className = 'reel';
   document.getElementById('reelR').className = 'reel';
-  document.getElementById('tapeSheen').classList.add('paused');
+  document.getElementById('tapeSheen').classList.remove('playing');
 }
 
-// ─── Scrub bar ────────────────────────────────────────────────────────────────
 document.getElementById('scrubWrap').addEventListener('click', function(e) {
   if (!audio || !audio.duration) return;
-  const rect = this.getBoundingClientRect();
-  const pct  = (e.clientX - rect.left) / rect.width;
-  audio.currentTime = pct * audio.duration;
+  audio.currentTime = ((e.clientX - this.getBoundingClientRect().left) / this.offsetWidth) * audio.duration;
   syncEpoch = getUTC() - audio.currentTime;
   updateShareBox();
 });
 
-// ─── Load track ───────────────────────────────────────────────────────────────
 function loadTrack() {
   const url = document.getElementById('audioUrl').value.trim();
   if (!url) { showToast('paste an audio URL first'); return; }
 
-  // If previous audio exists, stop it cleanly
   if (audio) {
     audio.pause();
     clearInterval(syncTimer);
-    clearInterval(vuTimer);
     stopVU();
-    stopBreath();
     reelsStop();
     isPlaying = false;
-    countdownArmed = false;
-    iosUnlocked = false;
-    resetArmUI();
+    syncEpoch = null;
+    document.getElementById('playBtn').classList.remove('ready');
   }
 
   audio = new Audio();
   audio.crossOrigin = 'anonymous';
-  // IMPORTANT: do NOT set audio.preload = 'auto' — on iOS this can trigger
-  // a buffering event that some versions treat as a play gesture.
-  audio.preload = 'none';
+  audio.preload = 'auto';
 
   audio.addEventListener('loadedmetadata', () => {
-    const dur = audio.duration;
-    document.getElementById('duration').textContent = isFinite(dur) ? fmt(dur) : '—';
-    // Extract filename as track title
+    document.getElementById('duration').textContent =
+      isFinite(audio.duration) ? fmt(audio.duration) : '—';
     try {
       const parts = url.split('/');
-      let name = decodeURIComponent(parts[parts.length - 1]).replace(/\.[^.]+$/, '');
+      const name  = decodeURIComponent(parts[parts.length - 1]).replace(/\.[^.]+$/, '');
       document.getElementById('trackTitle').textContent = name.slice(0, 22) || 'Track';
-    } catch(e) {
-      document.getElementById('trackTitle').textContent = 'Track';
-    }
-    setStatus('track loaded · tap arm to sync');
+    } catch(e) { document.getElementById('trackTitle').textContent = 'Track'; }
+    setStatus('ready · hit play when everyone is set');
   });
 
   audio.addEventListener('timeupdate', () => {
     if (!audio.duration) return;
-    const pct = (audio.currentTime / audio.duration) * 100;
-    document.getElementById('scrubFill').style.width = pct + '%';
+    document.getElementById('scrubFill').style.width =
+      (audio.currentTime / audio.duration * 100) + '%';
     document.getElementById('currentTime').textContent = fmt(audio.currentTime);
   });
 
   audio.addEventListener('ended', () => {
     isPlaying = false;
     clearInterval(syncTimer);
-    clearInterval(vuTimer);
     stopVU();
     reelsStop();
     document.getElementById('playIcon').style.display  = '';
@@ -677,31 +520,20 @@ function loadTrack() {
     setStatus('track ended');
   });
 
-  // Check URL params for epoch sync (someone opened a shared link)
+  // Pre-fill epoch from shared link — do NOT auto-play
   const params = new URLSearchParams(window.location.search);
   const sharedEpoch = params.get('e') ? parseFloat(params.get('e')) : null;
   if (sharedEpoch) {
-    audio.src = url;
-    audio.load();
-    audio.addEventListener('canplay', function onCanPlay() {
-      audio.removeEventListener('canplay', onCanPlay);
-      const offset = getUTC() - sharedEpoch;
-      if (offset >= 0 && offset < (audio.duration || 9999)) {
-        syncEpoch = sharedEpoch;
-        // Show "tap play to join in sync" — do NOT auto-play
-        setStatus('synced · tap play to join');
-        showToast('tap play to join in sync');
-        document.getElementById('playBtn').style.background = 'var(--gold)';
-      }
-    }, { once: true });
-  } else {
-    audio.src = url;
-    audio.load();
+    syncEpoch = sharedEpoch;
+    document.getElementById('playBtn').classList.add('ready');
+    setStatus('synced · tap play when ready');
   }
+
+  audio.src = url;
+  audio.load();
   updateShareBox();
 }
 
-// ─── Play / Pause ─────────────────────────────────────────────────────────────
 function togglePlay() {
   if (!audio) { showToast('load a track first'); return; }
 
@@ -709,42 +541,39 @@ function togglePlay() {
     audio.pause();
     isPlaying = false;
     clearInterval(syncTimer);
-    clearInterval(vuTimer);
     stopVU();
     reelsStop();
     document.getElementById('playIcon').style.display  = '';
     document.getElementById('pauseIcon').style.display = 'none';
     setStatus('paused');
-    // Reset play button style if it was gold from a shared link
-    document.getElementById('playBtn').style.background = '';
-  } else {
-    // If we have a sync epoch from a shared link, seek to the right position
-    if (syncEpoch !== null && !countdownArmed) {
-      const offset = getUTC() - syncEpoch;
-      if (offset >= 0 && offset < (audio.duration || 9999)) {
-        audio.currentTime = offset;
-      }
-    }
-    audio.play().then(() => {
-      isPlaying = true;
-      iosUnlocked = true;
-      reelsPlay();
-      document.getElementById('playIcon').style.display  = 'none';
-      document.getElementById('pauseIcon').style.display = '';
-      document.getElementById('playBtn').style.background = '';
-      if (!syncEpoch) syncEpoch = getUTC() - (audio.currentTime || 0);
-      startSync();
-      vuTimer = setInterval(animateVU, 80);
-      setStatus('playing');
-      updateShareBox();
-    }).catch(err => {
-      setStatus('tap play again — browser blocked audio');
-      showToast('tap play again');
-    });
+    return;
   }
+
+  // If joining from a shared link, seek to the correct position
+  if (syncEpoch !== null) {
+    const offset = getUTC() - syncEpoch;
+    if (offset > 0 && offset < (audio.duration || 99999)) {
+      audio.currentTime = offset;
+    }
+  }
+
+  audio.play().then(() => {
+    isPlaying = true;
+    reelsPlay();
+    document.getElementById('playIcon').style.display  = 'none';
+    document.getElementById('pauseIcon').style.display = '';
+    document.getElementById('playBtn').classList.remove('ready');
+    syncEpoch = getUTC() - audio.currentTime;
+    startSync();
+    vuTimer = setInterval(animateVU, 80);
+    setStatus('playing · in sync', true);
+    updateShareBox();
+  }).catch(() => {
+    setStatus('tap play again — browser requires a gesture');
+    showToast('tap play again');
+  });
 }
 
-// ─── Skip ─────────────────────────────────────────────────────────────────────
 function skip(sec) {
   if (!audio) return;
   audio.currentTime = Math.max(0, Math.min(audio.currentTime + sec, audio.duration || 0));
@@ -752,180 +581,39 @@ function skip(sec) {
   updateShareBox();
 }
 
-// ─── Sync drift correction ────────────────────────────────────────────────────
 function startSync() {
   clearInterval(syncTimer);
   syncTimer = setInterval(() => {
-    if (!isPlaying || !syncEpoch || !audio.duration) return;
-    const expected = getUTC() - syncEpoch;
-    const drift    = Math.abs(audio.currentTime - expected);
-    if (drift > 1.5) {
-      audio.currentTime = Math.min(Math.max(expected, 0), audio.duration);
+    if (!isPlaying || !syncEpoch || !audio || !audio.duration) return;
+    const drift = audio.currentTime - (getUTC() - syncEpoch);
+    if (Math.abs(drift) > 1.5) {
+      audio.currentTime = Math.min(Math.max(getUTC() - syncEpoch, 0), audio.duration);
     }
   }, 5000);
 }
 
-// ─── Arm / Disarm ─────────────────────────────────────────────────────────────
-function toggleArm() {
-  if (!audio) { showToast('load a track first'); return; }
-
-  if (countdownArmed) {
-    // Disarm
-    countdownArmed = false;
-    fireEpoch = null;
-    resetArmUI();
-    stopBreath();
-    showToast('disarmed');
-    return;
-  }
-
-  // ARM — calculate next UTC minute boundary
-  const now     = Date.now();
-  const msToMin = 60000 - (now % 60000);
-  const firems  = now + msToMin;
-  fireEpoch     = firems / 1000;  // UTC seconds
-  syncEpoch     = fireEpoch;       // track position 0 = this epoch
-
-  countdownArmed = true;
-
-  // ── iOS unlock trick ──────────────────────────────────────────────────────
-  // The ARM TAP is a user gesture. We use it to silently unlock iOS audio
-  // by playing then immediately pausing with volume 0 and currentTime = 0.
-  // This does NOT start the track — it just registers the gesture with Safari.
-  // We check iosUnlocked so we only do this once.
-  if (!iosUnlocked) {
-    audio.volume  = 0;
-    audio.currentTime = 0;
-    const unlockPromise = audio.play();
-    if (unlockPromise !== undefined) {
-      unlockPromise.then(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.volume = 1;
-        iosUnlocked = true;
-      }).catch(() => {
-        // unlock failed — that's ok, we'll try again at fire time
-        audio.volume = 1;
-      });
-    }
-  }
-
-  updateShareBox();
-  showToast('armed · fires at next UTC minute');
-  startBreath(false);
-  updateArmUI();
-  scheduleCountdown();
-}
-
-function resetArmUI() {
-  const btn = document.getElementById('armBtn');
-  btn.textContent = 'tap to arm';
-  btn.className   = 'arm-btn';
-  document.getElementById('armSub').textContent = '';
-}
-
-function updateArmUI() {
-  if (!countdownArmed) return;
-  const now  = getUTC();
-  const left = Math.ceil(fireEpoch - now);
-  const btn  = document.getElementById('armBtn');
-  const sub  = document.getElementById('armSub');
-
-  if (left <= 0) return; // about to fire
-
-  const urgent = left <= 10;
-  btn.className = 'arm-btn armed' + (urgent ? ' urgent' : '');
-  btn.textContent = urgent ? '⚡ firing soon' : '● armed';
-  sub.innerHTML = '<span class="countdown-num">' + left + 's</span> until next UTC minute';
-
-  if (urgent) startBreath(true);
-}
-
-function scheduleCountdown() {
-  if (!countdownArmed) return;
-  const now  = getUTC();
-  const left = fireEpoch - now;
-
-  if (left <= 0) {
-    fireSync();
-    return;
-  }
-
-  updateArmUI();
-  setTimeout(scheduleCountdown, 250);
-}
-
-// ─── Fire at the minute ───────────────────────────────────────────────────────
-function fireSync() {
-  countdownArmed = false;
-  stopBreath();
-
-  if (!audio) return;
-
-  // Seek to beginning — position 0 corresponds to fireEpoch
-  audio.currentTime = 0;
-
-  audio.play().then(() => {
-    isPlaying = true;
-    iosUnlocked = true;
-    reelsPlay();
-    document.getElementById('playIcon').style.display  = 'none';
-    document.getElementById('pauseIcon').style.display = '';
-    startSync();
-    vuTimer = setInterval(animateVU, 80);
-    setStatus('started at UTC minute · all devices in sync', true);
-    document.getElementById('armBtn').textContent  = '▶ playing in sync';
-    document.getElementById('armBtn').className    = 'arm-btn';
-    document.getElementById('armSub').textContent  = '';
-    showToast('🔴 live · in sync');
-    updateShareBox();
-  }).catch(() => {
-    // iOS blocked autoplay even after our unlock attempt.
-    // Show a prominent tap-to-play prompt.
-    setStatus('tap play to join · mobile requires a tap');
-    showToast('tap ▶ to start in sync', 4000);
-    // syncEpoch is already set to fireEpoch, so when user taps play,
-    // togglePlay() will seek to the correct offset automatically.
-    document.getElementById('armBtn').textContent = 'tap ▶ to join';
-    document.getElementById('armBtn').className   = 'arm-btn';
-    document.getElementById('armSub').textContent = '';
-    document.getElementById('playBtn').style.background = 'var(--gold)';
-  });
-}
-
-// ─── Share link ───────────────────────────────────────────────────────────────
 function updateShareBox() {
-  const url   = document.getElementById('audioUrl').value.trim();
-  const input = document.getElementById('shareInput');
-  if (!url || !syncEpoch) {
-    input.value = '';
-    return;
-  }
-  const base = window.location.href.split('?')[0];
-  input.value = base + '?src=' + encodeURIComponent(url) + '&e=' + Math.round(syncEpoch);
+  const url = document.getElementById('audioUrl').value.trim();
+  const inp = document.getElementById('shareInput');
+  if (!url || syncEpoch === null) { inp.value = ''; return; }
+  inp.value = window.location.href.split('?')[0] +
+    '?src=' + encodeURIComponent(url) + '&e=' + Math.round(syncEpoch);
 }
 
 function copyLink() {
   const v = document.getElementById('shareInput').value;
-  if (!v) { showToast('arm the player first to generate a link'); return; }
-  navigator.clipboard.writeText(v).then(() => showToast('link copied!'))
-    .catch(() => {
-      document.getElementById('shareInput').select();
-      showToast('select and copy the link manually');
-    });
+  if (!v) { showToast('hit play first to generate a sync link'); return; }
+  navigator.clipboard.writeText(v)
+    .then(() => showToast('link copied!'))
+    .catch(() => { document.getElementById('shareInput').select(); showToast('select and copy manually'); });
 }
 
-// ─── Load from URL params on page open ───────────────────────────────────────
-// NOTE: We deliberately do NOT auto-play here. We just pre-fill the URL
-// so the user sees what's loaded and chooses when to play or arm.
-(function checkParams() {
+// Auto-load from URL params on page open — never auto-plays
+(function() {
   const params = new URLSearchParams(window.location.search);
-  const src    = params.get('src');
-  const e      = params.get('e');
+  const src = params.get('src');
   if (src) {
     document.getElementById('audioUrl').value = decodeURIComponent(src);
-    if (e) syncEpoch = parseFloat(e);
-    // Load the track metadata but do NOT play
     loadTrack();
   }
 })();
